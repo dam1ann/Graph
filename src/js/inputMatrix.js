@@ -13,7 +13,8 @@ export default class {
 				for (let j = 0; j < dimension; j++) {
 					let input = $('<input>')
 						.attr({
-							class: 'matrix_cell',
+							class: 'matrix_cell x-' + j + ' y-' + i,
+							maxlength: 3,
 							value: i + j
 						});
 					form.append(input[0]);
@@ -49,6 +50,24 @@ export default class {
 
 		return matrix_row;
 	};
+
+	/**
+	 * Force symetric  matrix
+	 *
+	 * @param event
+	 */
+	static forceMatrixSymetric(event) {
+		let target = $(event.target);
+		let cls = target.attr('class').split(' ');
+		let x = cls[1];
+		let y = cls[2];
+
+		let elementVal = $('.' + x + '.' + y).val();
+
+		let newX = y.split('-')[1];
+		let newY = x.split('-')[1];
+		$('.x-' + newX + '.y-' + newY).val(elementVal);
+	}
 }
 
 
