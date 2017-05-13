@@ -2,15 +2,23 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport"
-	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="./dist/bundle.css">
-	<title>Projekt 1</title>
+	<title>Graph</title>
 </head>
 <body>
-
-
-	<script type="text/javascript" src="dist/bundle.js"></script>
+<div class="container">
+	<section class="intro">
+		<h1>Graph</h1>
+		<input placeholder="Dimension" id="matrix-dimension"/>
+		<button id="dimension-button" class="btn btn-primary">Start</button>
+	</section>
+	<div class="matrix-details">
+		<div id="matrix-content"></div>
+		<button id="approve-matrix" class="btn btn-primary">Approve Matrix</button>
+	</div>
+</div>
+<script type="text/javascript" src="dist/bundle.js"></script>
 </body>
 </html>

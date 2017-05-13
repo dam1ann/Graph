@@ -1,3 +1,9 @@
-import {createView} from  './view';
+import inputMatrix  from './inputMatrix';
 
-createView();
+$('#dimension-button').click(() => {
+	inputMatrix.createMatrix($('#matrix-dimension').val());
+});
+
+$("#approve-matrix").click(() => {
+	console.log(inputMatrix.getMatrix());
+});
