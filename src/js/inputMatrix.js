@@ -15,7 +15,7 @@ export default class {
 						.attr({
 							class: 'matrix_cell x-' + j + ' y-' + i,
 							maxlength: 3,
-							value: i + j
+							value: i === j ? 0 : i + j
 						});
 					form.append(input[0]);
 				}

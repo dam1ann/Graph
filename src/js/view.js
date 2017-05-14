@@ -1,55 +1,10 @@
 import * as d3 from 'd3';
 
-export function createView() {
+export function createView(data) {
 
 	const width = 1000,
 		height = 880,
-		links = [
-			{
-				source: 'A',
-				target: 'B',
-				weight: 10
-			}, {
-				source: 'B',
-				target: 'C',
-				weight: 5
-			}, {
-				source: 'C',
-				target: 'D',
-				weight: 5
-			}, {
-				source: 'D',
-				target: 'E',
-				weight: 45
-			}, {
-				source: 'B',
-				target: 'F',
-				weight: 99
-			}, {
-				source: 'F',
-				target: 'G',
-				weight: 2
-			}, {
-				source: 'G',
-				target: 'A',
-				weight: 1
-			},{source: 'E',
-				target: 'G',
-				weight: 5
-			}, {
-				source: 'B',
-				target: 'Z',
-				weight: 1000
-			},{
-				source: 'B',
-				target: 'X',
-				weight: 2
-			},{
-				source: 'X',
-				target: 'Y',
-				weight: 56
-			}];
-
+		links = data;
 	// create empty nodes array
 	let nodes = [];
 
@@ -68,15 +23,14 @@ export function createView() {
 		.nodes(d3.values(nodes)) //add nodes
 		.links(links) //add links
 		.on("tick", tick) //what to do
-		//.linkStrength(10)
+		.linkStrength(5)
 		//.friction(0.3)
 		.gravity(0.06)
 		.charge(-3000)
-		.linkDistance(80)
+		.linkDistance(400)
 		//.theta(-8)
 		//.alpha(4)
 		.start(); //kick the party off!
-
 
 
 	const svg = d3.select('.container').append('svg')
@@ -97,12 +51,12 @@ export function createView() {
 		.style('stroke-width', '8');
 
 	path.append("text")
-		.attr('text-anchor', 'middle')
+	//.attr('text-anchor', 'middle')
 		.attr('class', 'label')
 		.style('stroke', '#000')
 		.style('stroke-width', 2)
-		.style('font-size', '20px')
-		.style('text-anchor', 'middle')
+		.style('font-size', '28px')
+		//.style('text-anchor', 'middle')
 		//.attr("dy", ".35em")
 		.text((d) => {
 			return d.weight;
@@ -134,23 +88,24 @@ export function createView() {
 
 	//-----------------------------------------------------------
 	function tick() {
-		svg.selectAll('.link').attr("d", function (d) {
+		svg.selectAll('.link').attr("d", (d) => {
 			return `
 			M ${d.source.x} , ${d.source.y} 
 			  ${d.target.x},  ${d.target.y}`;
 		});
 
-		svg.selectAll('.label').attr("x", function (d) {
+		svg.selectAll('.label').attr("x", (d) => {
 			const dx = d.target.x + d.source.x;
 			return dx / 2;
 		});
 
-		svg.selectAll('.label').attr("y", function (d) {
+		svg.selectAll('.label').attr("y", (d) => {
 			const dy = d.target.y + d.source.y;
 			return dy / 2;
 		});
+		//.attr('dx', 25)
 
-		node.attr("transform", function (d) {
+		node.attr("transform", (d) => {
 			return "translate(" + d.x + "," + d.y + ")";
 		});
 	}
