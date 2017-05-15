@@ -68,6 +68,27 @@ export default class {
 		let newY = x.split('-')[1];
 		$('.x-' + newX + '.y-' + newY).val(elementVal);
 	}
+
+	/**
+	 * @param matrix
+	 * @returns {Array}
+	 */
+	static arrayToGraphObject(matrix) {
+		let links = [];
+		for (let i = 0; i < matrix.length; i++) {
+			for (let j = 0; j < matrix[i].length; j++) {
+				if (j > i && matrix[i][j] != 0) {
+					links.push({
+						source: String.fromCharCode(65 + i),
+						target: String.fromCharCode(65 + j),
+						weight: matrix[i][j]
+					});
+				}
+			}
+		}
+
+		return links;
+	}
 }
 
 
