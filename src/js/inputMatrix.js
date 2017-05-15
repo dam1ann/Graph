@@ -11,11 +11,12 @@ export default class {
 
 			for (let i = 0; i < dimension; i++) {
 				for (let j = 0; j < dimension; j++) {
+					let randomValue = (i < j) ? Math.floor((Math.random() * 30) + 1) : $('.x-' + j + '.y-' + i).val();
 					let input = $('<input>')
 						.attr({
-							class: 'matrix_cell x-' + j + ' y-' + i,
+							class: 'matrix_cell x-' + i + ' y-' + j,
 							maxlength: 3,
-							value: i === j ? 0 : i + j
+							value: i === j ? 0 : randomValue
 						});
 					form.append(input[0]);
 				}
