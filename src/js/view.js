@@ -1,10 +1,11 @@
 import * as d3 from 'd3';
 
-export function createView(data) {
+export function createView(data, distance) {
 
-	const width = 1000,
-		height = 880,
-		links = data;
+	const width = $('.container').width(),
+		height = 600,
+		links = data,
+		linkDistance = distance;
 	// create empty nodes array
 	let nodes = [];
 
@@ -27,23 +28,23 @@ export function createView(data) {
 		//.friction(0.3)
 		.gravity(0.06)
 		.charge(-3000)
-		.linkDistance(400)
+		.linkDistance(linkDistance)
 		//.theta(-8)
 		//.alpha(4)
 		.start(); //kick the party off!
 
 
-	const svg = d3.select('.container').append('svg')
+	const svg = d3.select('.view').append('svg')
 		.attr('width', width)
 		.attr('height', height)
-		.attr('class', 'graph');
+		.attr('class', 'graph mx-auto col-12');
 
 //**********************************************************************
 
 	const path = svg.selectAll('.link')
 		.data(force.links())
-		.enter().append('g')
-		.call(force.drag);
+		.enter().append('g');
+		//.call(force.drag);
 
 	path.append("svg:path")
 		.attr("class", "link")
@@ -70,8 +71,8 @@ export function createView(data) {
 		.attr("class", "node")
 		.attr("stroke", "black")
 		.attr('stroke-width', '2')
-		.style('fill', '#fff')
-		.call(force.drag);
+		.style('fill', '#fff');
+		//.call(force.drag);
 
 	node.append("circle")
 		.attr("r", width * 0.02);
