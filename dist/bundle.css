@@ -1,4 +1,4 @@
-@import url(/node_modules/bootstrap/dist/css/bootstrap.min.css);.matrix-details {
+@import url(/node_modules/bootstrap/dist/css/bootstrap.css);.matrix-details {
   margin-top: 10px;
   display: none; }
   .matrix-details input {
