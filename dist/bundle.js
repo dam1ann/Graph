@@ -10358,10 +10358,12 @@ $("#approve-matrix").click(function () {
 	$('.viewDrzewo').remove();
 	$('.viewGraph').remove();
 	var matrix = _inputMatrix2.default.getMatrix();
-	(0, _view.createView)(_inputMatrix2.default.arrayToGraphObject(matrix), 300);
-	$('.view').prepend('<h1 class="text-center mx-auto viewDrzewo">Wizualizacja grafu</h1>');
-	$('.view').append('<h1 class="text-center mx-auto viewGraph">Minimalne drzewo rozpinające graf</h1>');
-	(0, _view.createView)(_graphCalculation2.default.calculate(matrix), 100);
+
+	(0, _view.createView)(_inputMatrix2.default.arrayToGraphObject(matrix), 300, false, 1);
+	$('.svg:first-of-type').prepend('<h1 class="text-center mx-auto viewDrzewo">Wizualizacja grafu</h1>');
+
+	(0, _view.createView)(_graphCalculation2.default.calculate(matrix), 50, true, 2);
+	$('.svg:nth-of-type(2)').prepend('<h1 class="text-center mx-auto viewGraph">Minimalne drzewo rozpinające graf</h1>');
 });
 
 $('#matrix-content').keyup(function (event) {
@@ -10381,7 +10383,7 @@ $('#matrix-content').keyup(function (event) {
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = "<!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta name=\"viewport\"\r\n\t      content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\r\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n\t<link rel=\"stylesheet\" href=\"./dist/bundle.css\">\r\n\t<title>Graph</title>\r\n</head>\r\n<body>\r\n<div class=\"container\">\r\n\t<div class=\"row justify-content-between flex-column\">\r\n\t\t<div class=\"intro mx-auto\">\r\n\t\t\t<h1 class=\"text-center\">Graph</h1>\r\n\t\t\t<input placeholder=\"Dimension\" id=\"matrix-dimension\"/>\r\n\t\t\t<button id=\"dimension-button\" class=\"btn btn-primary\">Start</button>\r\n\t\t</div>\r\n\t\t<div class=\"matrix-details mx-auto\">\r\n\t\t\t<div id=\"matrix-content\"></div>\r\n\t\t\t<button id=\"approve-matrix\" class=\"btn btn-primary mx-auto d-block\">Approve Matrix</button>\r\n\t\t</div>\r\n\t\t<div class=\"view row\"></div>\r\n\t</div>\r\n</div>\r\n<script type=\"text/javascript\" src=\"dist/bundle.js\"></script>\r\n</body>\r\n</html>";
+module.exports = "<!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta name=\"viewport\"\r\n\t      content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\r\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n\t<link rel=\"stylesheet\" href=\"./dist/bundle.css\">\r\n\t<title>Graph</title>\r\n</head>\r\n<body>\r\n<div class=\"container\">\r\n\t<div class=\"row justify-content-between flex-column\">\r\n\t\t<div class=\"intro mx-auto\">\r\n\t\t\t<h1 class=\"text-center\">Graph</h1>\r\n\t\t\t<input placeholder=\"Dimension\" id=\"matrix-dimension\"/>\r\n\t\t\t<button id=\"dimension-button\" class=\"btn btn-primary\">Start</button>\r\n\t\t</div>\r\n\t\t<div class=\"matrix-details mx-auto\">\r\n\t\t\t<div id=\"matrix-content\"></div>\r\n\t\t\t<button id=\"approve-matrix\" class=\"btn btn-primary mx-auto d-block\">Approve Matrix</button>\r\n\t\t</div>\r\n\t\t<div class=\"view row flex-column\">\r\n\t\t\t<div class=\"svg\"></div>\r\n\t\t\t<div class=\"svg\"></div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<script type=\"text/javascript\" src=\"dist/bundle.js\"></script>\r\n</body>\r\n</html>";
 
 /***/ }),
 /* 4 */
@@ -10571,7 +10573,7 @@ var _class = function () {
 
 				for (var i = 0; i < dimension; i++) {
 					for (var j = 0; j < dimension; j++) {
-						var randomValue = i < j ? Math.floor(Math.random() * 30 + 1) : $('.x-' + j + '.y-' + i).val();
+						var randomValue = i < j ? Math.floor(Math.random() * 20) : $('.x-' + j + '.y-' + i).val();
 						var input = $('<input>').attr({
 							class: 'matrix_cell x-' + i + ' y-' + j,
 							maxlength: 3,
@@ -10683,10 +10685,10 @@ var d3 = _interopRequireWildcard(_d);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-function createView(data, distance) {
+function createView(data, distance, fixed, position) {
 
 	var width = $('.container').width(),
-	    height = 600,
+	    height = 900,
 	    links = data,
 	    linkDistance = distance;
 	// create empty nodes array
@@ -10697,6 +10699,12 @@ function createView(data, distance) {
 		link.source = nodes[link.source] || (nodes[link.source] = { name: link.source });
 		link.target = nodes[link.target] || (nodes[link.target] = { name: link.target });
 	});
+
+	if (fixed) {
+		nodes.A.x = width / 2;
+		nodes.A.y = 80;
+		nodes.A.fixed = true;
+	}
 
 	// use the force
 	var force = d3.layout.force() //build the layout
@@ -10712,7 +10720,7 @@ function createView(data, distance) {
 	.start(); //kick the party off!
 
 
-	var svg = d3.select('.view').append('svg').attr('width', width).attr('height', height).attr('class', 'graph mx-auto col-12');
+	var svg = d3.select('.svg:nth-of-type(' + position + ')').append('svg').attr('width', width).attr('height', height).attr('class', 'graph mx-auto col-12');
 
 	//**********************************************************************
 
@@ -10723,10 +10731,7 @@ function createView(data, distance) {
 
 	path.append("text")
 	//.attr('text-anchor', 'middle')
-	.attr('class', 'label').style('stroke', '#000').style('stroke-width', 2).style('font-size', '28px')
-	//.style('text-anchor', 'middle')
-	//.attr("dy", ".35em")
-	.text(function (d) {
+	.attr('class', 'label').style('stroke', '#000').style('stroke-width', 2).style('font-size', '28px').text(function (d) {
 		return d.weight;
 	});
 
@@ -10744,7 +10749,7 @@ function createView(data, distance) {
 	//-----------------------------------------------------------
 	function tick() {
 		svg.selectAll('.link').attr("d", function (d) {
-			return '\n\t\t\tM ' + d.source.x + ' , ' + d.source.y + ' \n\t\t\t  ' + d.target.x + ',  ' + d.target.y;
+			return '\n\t\t\t\t\tM ' + d.source.x + ' , ' + d.source.y + ' \n\t\t\t\t\t  ' + d.target.x + ',  ' + d.target.y;
 		});
 
 		svg.selectAll('.label').attr("x", function (d) {
@@ -10756,7 +10761,6 @@ function createView(data, distance) {
 			var dy = d.target.y + d.source.y;
 			return dy / 2;
 		});
-		//.attr('dx', 25)
 
 		node.attr("transform", function (d) {
 			return "translate(" + d.x + "," + d.y + ")";

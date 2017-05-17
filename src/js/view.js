@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 export function createView(data, distance, fixed, position) {
 
 	const width = $('.container').width(),
-		height = 700,
+		height = 900,
 		links = data,
 		linkDistance = distance;
 	// create empty nodes array
