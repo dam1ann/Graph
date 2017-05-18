@@ -5,11 +5,17 @@ export default class {
 	 * @param dimension
 	 */
 	static createMatrix(dimension) {
-		let form = $('#matrix-content').empty();
-		if (dimension < 10 && dimension > 0) {
-			$('.matrix-details').css('display', 'block');
+		if (dimension <= 10 && dimension > 0) {
+			let form = $('#matrix-content').empty();
+			$('.columnName').empty();
+			$('.rowName').empty();
 
+			$('.columnName').append('<p> </p>');
+			$('.matrix-details').css('visibility', 'visible');
 			for (let i = 0; i < dimension; i++) {
+				$('.columnName').append('<p>' + String.fromCharCode(65 + i) + '</p>');
+				$('.rowName').append('<p>' + String.fromCharCode(65 + i) + '</p>');
+
 				for (let j = 0; j < dimension; j++) {
 					let randomValue = (i < j) ? Math.floor((Math.random() * 20)) : $('.x-' + j + '.y-' + i).val();
 					let input = $('<input>')
@@ -22,6 +28,7 @@ export default class {
 				}
 
 				form.append($('<br>')[0]);
+
 			}
 		} else {
 			alert("Too large number. Max is 10")
@@ -91,5 +98,4 @@ export default class {
 		return links;
 	}
 }
-
 

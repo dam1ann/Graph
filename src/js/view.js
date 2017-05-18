@@ -37,7 +37,7 @@ export function createView(data, distance, fixed, position) {
 		.linkDistance(linkDistance)
 		//.theta(-8)
 		//.alpha(4)
-		.start(); //kick the party off!
+		.start();
 
 
 	const svg = d3.select('.svg:nth-of-type('+position+')').append('svg')
