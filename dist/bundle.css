@@ -9318,7 +9318,7 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   }
 }.matrix-details {
   margin-top: 10px;
-  display: none; }
+  visibility: hidden; }
   .matrix-details input {
     width: 60px;
     height: 50px;
@@ -9376,3 +9376,24 @@ body {
     right: 0;
     margin: 0 auto;
     border-radius: 10px; }
+
+.rowName p {
+  margin: 0;
+  padding: 0 0 0 10px;
+  border: 0;
+  height: 50px;
+  line-height: 50px;
+  width: 60px;
+  font-size: 26px;
+  text-transform: uppercase;
+  text-align: center; }
+
+.columnName p {
+  margin: 0;
+  border: 0;
+  height: 50px;
+  line-height: 50px;
+  width: 60px;
+  font-size: 26px;
+  text-transform: uppercase;
+  text-align: center; }

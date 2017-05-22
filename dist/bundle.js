@@ -10383,7 +10383,7 @@ $('#matrix-content').keyup(function (event) {
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = "<!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta name=\"viewport\"\r\n\t      content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\r\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n\t<link rel=\"stylesheet\" href=\"./dist/bundle.css\">\r\n\t<title>Graph</title>\r\n</head>\r\n<body>\r\n<div class=\"container\">\r\n\t<div class=\"row justify-content-between flex-column\">\r\n\t\t<div class=\"intro mx-auto\">\r\n\t\t\t<h1 class=\"text-center\">Graph</h1>\r\n\t\t\t<input placeholder=\"Dimension\" id=\"matrix-dimension\"/>\r\n\t\t\t<button id=\"dimension-button\" class=\"btn btn-primary\">Start</button>\r\n\t\t</div>\r\n\t\t<div class=\"matrix-details mx-auto\">\r\n\t\t\t<div id=\"matrix-content\"></div>\r\n\t\t\t<button id=\"approve-matrix\" class=\"btn btn-primary mx-auto d-block\">Approve Matrix</button>\r\n\t\t</div>\r\n\t\t<div class=\"view row flex-column\">\r\n\t\t\t<div class=\"svg\"></div>\r\n\t\t\t<div class=\"svg\"></div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<script type=\"text/javascript\" src=\"dist/bundle.js\"></script>\r\n</body>\r\n</html>";
+module.exports = "<!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta name=\"viewport\"\r\n\t      content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\r\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n\t<link rel=\"stylesheet\" href=\"./dist/bundle.css\">\r\n\t<title>Graph</title>\r\n</head>\r\n<body>\r\n<div class=\"container\">\r\n\t<div class=\"row justify-content-between flex-column\">\r\n\t\t<div class=\"intro mx-auto\">\r\n\t\t\t<h1 class=\"text-center\">Graph</h1>\r\n\t\t\t<input placeholder=\"Dimension\" id=\"matrix-dimension\"/>\r\n\t\t\t<button id=\"dimension-button\" class=\"btn btn-primary\">Start</button>\r\n\t\t</div>\r\n\t\t<div class=\"matrix-details  mx-auto\">\r\n\t\t\t<div class=\"row columnName \">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"flex-row justify-content-between row\">\r\n\t\t\t\t<div class=\"flex-column rowName\">\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"matrix-container\">\r\n\t\t\t\t\t<div id=\"matrix-content\"></div>\r\n\t\t\t\t\t<button id=\"approve-matrix\" class=\"btn btn-primary mx-auto d-block\">Approve Matrix</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"view row flex-column\">\r\n\t\t\t<div class=\"svg\"></div>\r\n\t\t\t<div class=\"svg\"></div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<script type=\"text/javascript\" src=\"dist/bundle.js\"></script>\r\n</body>\r\n</html>";
 
 /***/ }),
 /* 4 */
@@ -10567,11 +10567,17 @@ var _class = function () {
    * @param dimension
    */
 		value: function createMatrix(dimension) {
-			var form = $('#matrix-content').empty();
-			if (dimension < 10 && dimension > 0) {
-				$('.matrix-details').css('display', 'block');
+			if (dimension <= 10 && dimension > 0) {
+				var form = $('#matrix-content').empty();
+				$('.columnName').empty();
+				$('.rowName').empty();
 
+				$('.columnName').append('<p> </p>');
+				$('.matrix-details').css('visibility', 'visible');
 				for (var i = 0; i < dimension; i++) {
+					$('.columnName').append('<p>' + String.fromCharCode(65 + i) + '</p>');
+					$('.rowName').append('<p>' + String.fromCharCode(65 + i) + '</p>');
+
 					for (var j = 0; j < dimension; j++) {
 						var randomValue = i < j ? Math.floor(Math.random() * 20) : $('.x-' + j + '.y-' + i).val();
 						var input = $('<input>').attr({
@@ -10717,8 +10723,7 @@ function createView(data, distance, fixed, position) {
 	.gravity(0.06).charge(-3000).linkDistance(linkDistance)
 	//.theta(-8)
 	//.alpha(4)
-	.start(); //kick the party off!
-
+	.start();
 
 	var svg = d3.select('.svg:nth-of-type(' + position + ')').append('svg').attr('width', width).attr('height', height).attr('class', 'graph mx-auto col-12');
 
