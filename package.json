@@ -1,8 +1,8 @@
 {
   "name": "grafy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "grafy sieci projekt1",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,8 @@
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.1",
     "d3": "^3.5.17",
+    "electron": "^1.6.8",
+    "electron-packager": "^8.7.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "html-loader": "^0.4.5",
     "jquery": "^3.2.1",
