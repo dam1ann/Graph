@@ -104,3 +104,23 @@ body {
 	text-align: center;
   }
 }
+
+.alert {
+  position: absolute;
+  top: 120px;
+  left: 200px;
+  right: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.95);
+
+  p {
+	text-align: center;
+	display: block;
+	top: 50%;
+	left: 0;
+	right: 0;
+	position: absolute;
+	transform: translateY(-50%);
+  	font-size: 40px;
+  }
+}

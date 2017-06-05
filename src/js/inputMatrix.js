@@ -5,7 +5,11 @@ export default class {
 	 * @param dimension
 	 */
 	static createMatrix(dimension) {
-		if (dimension <= 10 && dimension > 0) {
+
+
+		if (dimension <= 10 && dimension > 1) {
+
+
 			let form = $('#matrix-content').empty();
 			$('.columnName').empty();
 			$('.rowName').empty();
@@ -31,7 +35,18 @@ export default class {
 
 			}
 		} else {
-			alert("Too large number. Max is 10")
+			const alert = document.createElement('div'),
+				message = document.createElement('p');
+
+
+			message.textContent = 'Zła liczba (Podaj liczbę z przedziału od 2 do 10)';
+			alert.classList.add('alert');
+			alert.appendChild(message);
+			document.querySelector('.container').appendChild(alert);
+
+			setTimeout(()=>{
+				document.querySelector('.container').removeChild(alert);
+			},3000)
 		}
 	};
 

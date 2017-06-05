@@ -7,6 +7,7 @@ $('#dimension-button').click(() => {
 	inputMatrix.createMatrix($('#matrix-dimension').val());
 });
 
+
 $("#approve-matrix").click(() => {
 	$('.graph').remove();
 	$('.viewDrzewo').remove();
