@@ -60,7 +60,7 @@ export default class {
 		let ind = 0;
 
 		$("#matrix-content").contents().each(function (i, e) {
-			if (this.nodeName == "INPUT") {
+			if (this.nodeName === "INPUT") {
 				if (!matrix_row[ind]) {
 					matrix_row.push([]);
 				}
@@ -100,7 +100,7 @@ export default class {
 		let links = [];
 		for (let i = 0; i < matrix.length; i++) {
 			for (let j = 0; j < matrix[i].length; j++) {
-				if (j > i && matrix[i][j] != 0) {
+				if (j > i && matrix[i][j] !== 0) {
 					links.push({
 						source: String.fromCharCode(65 + i),
 						target: String.fromCharCode(65 + j),

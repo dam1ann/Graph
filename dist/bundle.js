@@ -10328,454 +10328,60 @@ return jQuery;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {
-
-var _inputMatrix = __webpack_require__(6);
-
-var _inputMatrix2 = _interopRequireDefault(_inputMatrix);
-
-var _common = __webpack_require__(4);
-
-var _common2 = _interopRequireDefault(_common);
-
-var _graphCalculation = __webpack_require__(5);
-
-var _graphCalculation2 = _interopRequireDefault(_graphCalculation);
-
-var _view = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-$('#dimension-button').click(function () {
-	_inputMatrix2.default.createMatrix($('#matrix-dimension').val());
-});
-
-$("#approve-matrix").click(function () {
-	$('.graph').remove();
-	$('.viewDrzewo').remove();
-	$('.viewGraph').remove();
-	var matrix = _inputMatrix2.default.getMatrix();
-
-	(0, _view.createView)(_inputMatrix2.default.arrayToGraphObject(matrix), 300, false, 1);
-	$('.svg:first-of-type').prepend('<h1 class="text-center mx-auto viewDrzewo">Wizualizacja grafu</h1>');
-
-	(0, _view.createView)(_graphCalculation2.default.calculate(matrix), 50, true, 2);
-	$('.svg:nth-of-type(2)').prepend('<h1 class="text-center mx-auto viewGraph">Minimalne drzewo rozpinające graf</h1>');
-});
-
-$('#matrix-content').keyup(function (event) {
-	_inputMatrix2.default.forceMatrixSymetric(event);
-}).keydown(function (event) {
-	_common2.default.validateOnlyNumber(event);
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports) {
 
-module.exports = "<!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta name=\"viewport\"\r\n\t      content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\r\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n\t<link rel=\"stylesheet\" href=\"./dist/bundle.css\">\r\n\t<title>Graph</title>\r\n</head>\r\n<body>\r\n<div class=\"container\">\r\n\t<div class=\"row justify-content-between flex-column\">\r\n\t\t<div class=\"intro mx-auto\">\r\n\t\t\t<h1 class=\"text-center\">Graph</h1>\r\n\t\t\t<input placeholder=\"Dimension\" id=\"matrix-dimension\"/>\r\n\t\t\t<button id=\"dimension-button\" class=\"btn btn-primary\">Start</button>\r\n\t\t</div>\r\n\t\t<div class=\"matrix-details  mx-auto\">\r\n\t\t\t<div class=\"row columnName \">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"flex-row justify-content-between row\">\r\n\t\t\t\t<div class=\"flex-column rowName\">\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"matrix-container\">\r\n\t\t\t\t\t<div id=\"matrix-content\"></div>\r\n\t\t\t\t\t<button id=\"approve-matrix\" class=\"btn btn-primary mx-auto d-block\">Approve Matrix</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"view row flex-column\">\r\n\t\t\t<div class=\"svg\"></div>\r\n\t\t\t<div class=\"svg\"></div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<script type=\"text/javascript\" src=\"dist/bundle.js\"></script>\r\n</body>\r\n</html>";
+module.exports = "<!doctype html>\n<html lang=\"en\">\n<head>\n\t<meta charset=\"UTF-8\">\n\t<meta name=\"viewport\"\n\t      content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n\t<link rel=\"stylesheet\" href=\"./dist/bundle.css\">\n\t<title>Graph</title>\n</head>\n<body>\n<div class=\"container\">\n\t<div class=\"row justify-content-between flex-column\">\n\t\t<div class=\"intro mx-auto\">\n\t\t\t<h1 class=\"text-center\">Graph</h1>\n\t\t\t<input placeholder=\"Dimension\" id=\"matrix-dimension\"/>\n\t\t\t<button id=\"dimension-button\" class=\"btn btn-primary\">Start</button>\n\t\t</div>\n\t\t<div class=\"matrix-details  mx-auto\">\n\t\t\t<div class=\"row columnName \">\n\t\t\t</div>\n\t\t\t<div class=\"flex-row justify-content-between row\">\n\t\t\t\t<div class=\"flex-column rowName\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"matrix-container\">\n\t\t\t\t\t<div id=\"matrix-content\"></div>\n\t\t\t\t\t<button id=\"approve-matrix\" class=\"btn btn-primary mx-auto d-block\">Approve Matrix</button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"view row flex-column\">\n\t\t\t<div class=\"svg\"></div>\n\t\t\t<div class=\"svg\"></div>\n\t\t</div>\n\t</div>\n</div>\n<script type=\"text/javascript\" src=\"dist/bundle.js\"></script>\n</body>\n</html>";
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__inputMatrix__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__graphCalculation__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view__ = __webpack_require__(8);
+
+
+
+
+
+$('#dimension-button').click(() => {
+	__WEBPACK_IMPORTED_MODULE_0__inputMatrix__["a" /* default */].createMatrix($('#matrix-dimension').val());
+});
+
+$("#approve-matrix").click(() => {
+	$('.graph').remove();
+	$('.viewDrzewo').remove();
+	$('.viewGraph').remove();
+	const matrix = __WEBPACK_IMPORTED_MODULE_0__inputMatrix__["a" /* default */].getMatrix();
+
+	__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__view__["a" /* createView */])(__WEBPACK_IMPORTED_MODULE_0__inputMatrix__["a" /* default */].arrayToGraphObject(matrix),300,false,1);
+	$('.svg:first-of-type').prepend('<h1 class="text-center mx-auto viewDrzewo">Wizualizacja grafu</h1>');
+
+	__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__view__["a" /* createView */])(__WEBPACK_IMPORTED_MODULE_2__graphCalculation__["a" /* default */].calculate(matrix),50, true,2);
+	$('.svg:nth-of-type(2)').prepend('<h1 class="text-center mx-auto viewGraph">Minimalne drzewo rozpinające graf</h1>');
+});
+
+$('#matrix-content')
+	.keyup(function (event) {
+		__WEBPACK_IMPORTED_MODULE_0__inputMatrix__["a" /* default */].forceMatrixSymetric(event)
+	})
+	.keydown(function (event) {
+		__WEBPACK_IMPORTED_MODULE_1__common__["a" /* default */].validateOnlyNumber(event);
+	});
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var _class = function () {
-	function _class() {
-		_classCallCheck(this, _class);
-	}
-
-	_createClass(_class, null, [{
-		key: "validateOnlyNumber",
-
-		/**
-   * Allow only number input
-   *
-   * @param e
-   */
-		value: function validateOnlyNumber(e) {
-			-1 !== $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) || /65|67|86|88/.test(e.keyCode) && (!0 === e.ctrlKey || !0 === e.metaKey) || 35 <= e.keyCode && 40 >= e.keyCode || (e.shiftKey || 48 > e.keyCode || 57 < e.keyCode) && (96 > e.keyCode || 105 < e.keyCode) && e.preventDefault();
-		}
-	}]);
-
-	return _class;
-}();
-
-exports.default = _class;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var _class = function () {
-	function _class() {
-		_classCallCheck(this, _class);
-	}
-
-	_createClass(_class, null, [{
-		key: "minimum",
-
-
-		/**
-   * @param graph
-   * @param visited
-   * @param row
-   * @returns {number}
-   */
-		value: function minimum(graph, visited, row) {
-			var min = 9999,
-			    minIndex = -1;
-
-			for (var i = 0; i < graph.length; i++) {
-				if (parseInt(graph[row][i], 10) > 0 && parseInt(graph[row][i], 10) < min && visited[i] == false) {
-					min = graph[row][i];
-					minIndex = i;
-				}
-			}
-
-			return minIndex;
-		}
-
-		/**
-   * @param graph
-   * @returns {Array}
-   */
-
-	}, {
-		key: "calculate",
-		value: function calculate(graph) {
-			var visited = [],
-			    prev = [],
-			    links = [];
-			var minIndex = 0,
-			    row = 0,
-			    prevCounter = 0,
-			    lastVisited = 0;
-
-			for (var i = 0; i < graph.length; i++) {
-				visited[i] = false;
-			}visited[0] = true;
-
-			for (var _i = 0; _i < graph.length - 1; _i++) {
-				prevCounter = _i;
-
-				do {
-					minIndex = this.minimum(graph, visited, row);
-					prevCounter = prevCounter - 1;
-					row = prev[prevCounter];
-
-					if (minIndex === -1) lastVisited = row;
-				} while (minIndex === -1 && prevCounter >= 0);
-
-				visited[minIndex] = true;
-				row = minIndex;
-				prev[_i] = row;
-
-				links.push({
-					source: String.fromCharCode(65 + lastVisited),
-					target: String.fromCharCode(65 + minIndex)
-				});
-
-				lastVisited = minIndex;
-			}
-
-			// 	let graph =
-			// 		[
-			// 			[0, 1, 8, 0, 5, 0],
-			// 			[1, 0, 0, 0, 1, 0],
-			// 			[8, 0, 0, 2, 0, 0],
-			// 			[0, 0, 2, 0, 2, 1],
-			// 			[5, 1, 0, 2, 0, 0],
-			// 			[0, 0, 0, 1, 0, 0]
-			// 		];
-			// 		let graph = [
-			// 			[0, 12, 0, 0, 14, 0, 20],
-			// 			[12, 0, 12, 10, 6, 0, 0],
-			// 			[0, 12, 0, 4, 0, 0, 0],
-			// 			[0, 10, 4, 0, 0, 6, 0],
-			// 			[14, 6, 0, 0, 0, 6, 8],
-			// 			[0, 0, 0, 6, 6, 0, 4],
-			// 			[20, 0, 0, 0, 8, 4, 0]
-			// 		];
-			return links;
-		}
-	}]);
-
-	return _class;
-}();
-
-exports.default = _class;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var _class = function () {
-	function _class() {
-		_classCallCheck(this, _class);
-	}
-
-	_createClass(_class, null, [{
-		key: 'createMatrix',
-
-		/**
-   * Dynamic append matrix
-   *
-   * @param dimension
-   */
-		value: function createMatrix(dimension) {
-			if (dimension <= 10 && dimension > 0) {
-				var form = $('#matrix-content').empty();
-				$('.columnName').empty();
-				$('.rowName').empty();
-
-				$('.columnName').append('<p> </p>');
-				$('.matrix-details').css('visibility', 'visible');
-				for (var i = 0; i < dimension; i++) {
-					$('.columnName').append('<p>' + String.fromCharCode(65 + i) + '</p>');
-					$('.rowName').append('<p>' + String.fromCharCode(65 + i) + '</p>');
-
-					for (var j = 0; j < dimension; j++) {
-						var randomValue = i < j ? Math.floor(Math.random() * 20) : $('.x-' + j + '.y-' + i).val();
-						var input = $('<input>').attr({
-							class: 'matrix_cell x-' + i + ' y-' + j,
-							maxlength: 3,
-							value: i === j ? 0 : randomValue
-						});
-						form.append(input[0]);
-					}
-
-					form.append($('<br>')[0]);
-				}
-			} else {
-				alert("Too large number. Max is 10");
-			}
-		}
-	}, {
-		key: 'getMatrix',
-
-
-		/**
-   * Return mapped matrix response
-   *
-   * @returns {Array}
-   */
-		value: function getMatrix() {
-			var matrix_row = [];
-			var ind = 0;
-
-			$("#matrix-content").contents().each(function (i, e) {
-				if (this.nodeName == "INPUT") {
-					if (!matrix_row[ind]) {
-						matrix_row.push([]);
-					}
-					matrix_row[ind].push($(this).val());
-				} else {
-					ind++;
-				}
-			});
-
-			return matrix_row;
-		}
-	}, {
-		key: 'forceMatrixSymetric',
-
-
-		/**
-   * Force symetric  matrix
-   *
-   * @param event
-   */
-		value: function forceMatrixSymetric(event) {
-			var target = $(event.target);
-			var cls = target.attr('class').split(' ');
-			var x = cls[1];
-			var y = cls[2];
-
-			var elementVal = $('.' + x + '.' + y).val();
-
-			var newX = y.split('-')[1];
-			var newY = x.split('-')[1];
-			$('.x-' + newX + '.y-' + newY).val(elementVal);
-		}
-
-		/**
-   * @param matrix
-   * @returns {Array}
-   */
-
-	}, {
-		key: 'arrayToGraphObject',
-		value: function arrayToGraphObject(matrix) {
-			var links = [];
-			for (var i = 0; i < matrix.length; i++) {
-				for (var j = 0; j < matrix[i].length; j++) {
-					if (j > i && matrix[i][j] != 0) {
-						links.push({
-							source: String.fromCharCode(65 + i),
-							target: String.fromCharCode(65 + j),
-							weight: matrix[i][j]
-						});
-					}
-				}
-			}
-
-			return links;
-		}
-	}]);
-
-	return _class;
-}();
-
-exports.default = _class;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.createView = createView;
-
-var _d = __webpack_require__(8);
-
-var d3 = _interopRequireWildcard(_d);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function createView(data, distance, fixed, position) {
-
-	var width = $('.container').width(),
-	    height = 900,
-	    links = data,
-	    linkDistance = distance;
-	// create empty nodes array
-	var nodes = [];
-
-	// compute nodes from links data
-	links.forEach(function (link) {
-		link.source = nodes[link.source] || (nodes[link.source] = { name: link.source });
-		link.target = nodes[link.target] || (nodes[link.target] = { name: link.target });
-	});
-
-	if (fixed) {
-		nodes.A.x = width / 2;
-		nodes.A.y = 80;
-		nodes.A.fixed = true;
-	}
-
-	// use the force
-	var force = d3.layout.force() //build the layout
-	.size([width, height]) //specified earlier
-	.nodes(d3.values(nodes)) //add nodes
-	.links(links) //add links
-	.on("tick", tick) //what to do
-	.linkStrength(5)
-	//.friction(0.3)
-	.gravity(0.06).charge(-3000).linkDistance(linkDistance)
-	//.theta(-8)
-	//.alpha(4)
-	.start();
-
-	var svg = d3.select('.svg:nth-of-type(' + position + ')').append('svg').attr('width', width).attr('height', height).attr('class', 'graph mx-auto col-12');
-
-	//**********************************************************************
-
-	var path = svg.selectAll('.link').data(force.links()).enter().append('g');
-	//.call(force.drag);
-
-	path.append("svg:path").attr("class", "link").style('stroke', '#c6c6c6').style('stroke-width', '8');
-
-	path.append("text")
-	//.attr('text-anchor', 'middle')
-	.attr('class', 'label').style('stroke', '#000').style('stroke-width', 2).style('font-size', '28px').text(function (d) {
-		return d.weight;
-	});
-
-	//*****************************************************************
-	// define the nodes
-	var node = svg.selectAll(".node").data(force.nodes()).enter().append("g").attr("class", "node").attr("stroke", "black").attr('stroke-width', '2').style('fill', '#fff');
-	//.call(force.drag);
-
-	node.append("circle").attr("r", width * 0.02);
-
-	node.append("text").style('font-size', '20px').style('text-anchor', 'middle').style('alignment-baseline', 'middle').text(function (d) {
-		return d.name;
-	}).style('fill', '#fff');
-
-	//-----------------------------------------------------------
-	function tick() {
-		svg.selectAll('.link').attr("d", function (d) {
-			return '\n\t\t\t\t\tM ' + d.source.x + ' , ' + d.source.y + ' \n\t\t\t\t\t  ' + d.target.x + ',  ' + d.target.y;
-		});
-
-		svg.selectAll('.label').attr("x", function (d) {
-			var dx = d.target.x + d.source.x;
-			return dx / 2;
-		});
-
-		svg.selectAll('.label').attr("y", function (d) {
-			var dy = d.target.y + d.source.y;
-			return dy / 2;
-		});
-
-		node.attr("transform", function (d) {
-			return "translate(" + d.x + "," + d.y + ")";
-		});
-	}
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function() {
@@ -20338,12 +19944,356 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function() {
 }();
 
 /***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony default export */ __webpack_exports__["a"] = (class {
+	/**
+	 * Allow only number input
+	 *
+	 * @param e
+	 */
+	static validateOnlyNumber(e) {
+		-1 !== $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) ||
+		/65|67|86|88/.test(e.keyCode) &&
+		(!0 === e.ctrlKey || !0 === e.metaKey) ||
+		35 <= e.keyCode && 40 >= e.keyCode || (e.shiftKey ||
+		48 > e.keyCode ||
+		57 < e.keyCode) &&
+		(96 > e.keyCode || 105 < e.keyCode) &&
+		e.preventDefault()
+	}
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = (class {
+
+	/**
+	 * @param graph
+	 * @param visited
+	 * @param row
+	 * @returns {number}
+	 */
+	static minimum(graph, visited, row) {
+		let min = 9999, minIndex = -1;
+
+		for (let i = 0; i < graph.length; i++) {
+			if (parseInt(graph[row][i], 10) > 0 && parseInt(graph[row][i], 10) < min && visited[i] === false) {
+				min = graph[row][i];
+				minIndex = i;
+			}
+		}
+
+		return minIndex;
+	}
+
+	/**
+	 * @param graph
+	 * @returns {Array}
+	 */
+	static calculate(graph) {
+		const visited = [], prev = [], links = [];
+		let minIndex = 0, row = 0, prevCounter = 0, lastVisited = 0, minValue = 0;
+
+		for (let i = 0; i < graph.length; i++) visited[i] = false;
+		visited[0] = true;
+
+		for (let i = 0; i < graph.length - 1; i++) {
+			prevCounter = i;
+
+			do {
+				minIndex = this.minimum(graph, visited, row);
+
+				prevCounter = prevCounter - 1;
+				row = prev[prevCounter];
+				if (minIndex === -1) lastVisited = row;
+
+			} while (minIndex === -1 && prevCounter >= 0);
+
+			visited[minIndex] = true;
+			row = minIndex;
+			prev[i] = row;
+
+			links.push({
+				source: String.fromCharCode(65 + lastVisite),
+				target: String.fromCharCode(65 + minIndex),
+				weight: 10,
+			});
+			
+			lastVisited = minIndex;
+		}
+
+// 	let graph =
+// 		[
+// 			[0, 1, 8, 0, 5, 0],
+// 			[1, 0, 0, 0, 1, 0],
+// 			[8, 0, 0, 2, 0, 0],
+// 			[0, 0, 2, 0, 2, 1],
+// 			[5, 1, 0, 2, 0, 0],
+// 			[0, 0, 0, 1, 0, 0]
+// 		];
+// 		let graph = [
+// 			[0, 12, 0, 0, 14, 0, 20],
+// 			[12, 0, 12, 10, 6, 0, 0],
+// 			[0, 12, 0, 4, 0, 0, 0],
+// 			[0, 10, 4, 0, 0, 6, 0],
+// 			[14, 6, 0, 0, 0, 6, 8],
+// 			[0, 0, 0, 6, 6, 0, 4],
+// 			[20, 0, 0, 0, 8, 4, 0]
+// 		];
+		return links;
+	}
+});
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony default export */ __webpack_exports__["a"] = (class {
+	/**
+	 * Dynamic append matrix
+	 *
+	 * @param dimension
+	 */
+	static createMatrix(dimension) {
+		if (dimension <= 10 && dimension > 0) {
+			let form = $('#matrix-content').empty();
+			$('.columnName').empty();
+			$('.rowName').empty();
+
+			$('.columnName').append('<p> </p>');
+			$('.matrix-details').css('visibility', 'visible');
+			for (let i = 0; i < dimension; i++) {
+				$('.columnName').append('<p>' + String.fromCharCode(65 + i) + '</p>');
+				$('.rowName').append('<p>' + String.fromCharCode(65 + i) + '</p>');
+
+				for (let j = 0; j < dimension; j++) {
+					let randomValue = (i < j) ? Math.floor((Math.random() * 20)) : $('.x-' + j + '.y-' + i).val();
+					let input = $('<input>')
+						.attr({
+							class: 'matrix_cell x-' + i + ' y-' + j,
+							maxlength: 3,
+							value: i === j ? 0 : randomValue
+						});
+					form.append(input[0]);
+				}
+
+				form.append($('<br>')[0]);
+
+			}
+		} else {
+			alert("Too large number. Max is 10")
+		}
+	};
+
+	/**
+	 * Return mapped matrix response
+	 *
+	 * @returns {Array}
+	 */
+	static getMatrix() {
+		let matrix_row = [];
+		let ind = 0;
+
+		$("#matrix-content").contents().each(function (i, e) {
+			if (this.nodeName == "INPUT") {
+				if (!matrix_row[ind]) {
+					matrix_row.push([]);
+				}
+				matrix_row[ind].push($(this).val());
+			}
+			else {
+				ind++;
+			}
+		});
+
+		return matrix_row;
+	};
+
+	/**
+	 * Force symetric  matrix
+	 *
+	 * @param event
+	 */
+	static forceMatrixSymetric(event) {
+		let target = $(event.target);
+		let cls = target.attr('class').split(' ');
+		let x = cls[1];
+		let y = cls[2];
+
+		let elementVal = $('.' + x + '.' + y).val();
+
+		let newX = y.split('-')[1];
+		let newY = x.split('-')[1];
+		$('.x-' + newX + '.y-' + newY).val(elementVal);
+	}
+
+	/**
+	 * @param matrix
+	 * @returns {Array}
+	 */
+	static arrayToGraphObject(matrix) {
+		let links = [];
+		for (let i = 0; i < matrix.length; i++) {
+			for (let j = 0; j < matrix[i].length; j++) {
+				if (j > i && matrix[i][j] != 0) {
+					links.push({
+						source: String.fromCharCode(65 + i),
+						target: String.fromCharCode(65 + j),
+						weight: matrix[i][j]
+					});
+				}
+			}
+		}
+
+		return links;
+	}
+});
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony export (immutable) */ __webpack_exports__["a"] = createView;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_d3__);
+
+
+function createView(data, distance, fixed, position) {
+
+	const width = $('.container').width(),
+		height = 900,
+		links = data,
+		linkDistance = distance;
+	// create empty nodes array
+	let nodes = [];
+
+	// compute nodes from links data
+	links.forEach(function (link) {
+		link.source = nodes[link.source] ||
+			(nodes[link.source] = {name: link.source});
+		link.target = nodes[link.target] ||
+			(nodes[link.target] = {name: link.target});
+	});
+
+	if (fixed) {
+		nodes.A.x = width / 2;
+		nodes.A.y = 80;
+		nodes.A.fixed = true;
+
+	}
+
+	// use the force
+	const force = __WEBPACK_IMPORTED_MODULE_0_d3__["layout"].force() //build the layout
+		.size([width, height]) //specified earlier
+		.nodes(__WEBPACK_IMPORTED_MODULE_0_d3__["values"](nodes)) //add nodes
+		.links(links) //add links
+		.on("tick", tick) //what to do
+		.linkStrength(5)
+		//.friction(0.3)
+		.gravity(0.06)
+		.charge(-3000)
+		.linkDistance(linkDistance)
+		//.theta(-8)
+		//.alpha(4)
+		.start();
+
+
+	const svg = __WEBPACK_IMPORTED_MODULE_0_d3__["select"]('.svg:nth-of-type('+position+')').append('svg')
+		.attr('width', width)
+		.attr('height', height)
+		.attr('class', 'graph mx-auto col-12');
+
+//**********************************************************************
+
+	const path = svg.selectAll('.link')
+		.data(force.links())
+		.enter().append('g');
+	//.call(force.drag);
+
+	path.append("svg:path")
+		.attr("class", "link")
+		.style('stroke', '#c6c6c6')
+		.style('stroke-width', '8');
+
+	path.append("text")
+	//.attr('text-anchor', 'middle')
+		.attr('class', 'label')
+		.style('stroke', '#000')
+		.style('stroke-width', 2)
+		.style('font-size', '28px')
+		.text(d => {
+			return d.weight;
+		});
+
+	//*****************************************************************
+	// define the nodes
+	const node = svg.selectAll(".node")
+		.data(force.nodes())
+		.enter().append("g")
+		.attr("class", "node")
+		.attr("stroke", "black")
+		.attr('stroke-width', '2')
+		.style('fill', '#fff');
+	//.call(force.drag);
+
+	node.append("circle")
+		.attr("r", width * 0.02);
+
+	node.append("text")
+		.style('font-size', '20px')
+		.style('text-anchor', 'middle')
+		.style('alignment-baseline', 'middle')
+		.text(d => {
+			return d.name;
+		})
+		.style('fill', '#fff');
+
+
+	//-----------------------------------------------------------
+	function tick() {
+		svg.selectAll('.link').attr("d", d => {
+			return `
+					M ${d.source.x} , ${d.source.y} 
+					  ${d.target.x},  ${d.target.y}`;
+		});
+
+		svg.selectAll('.label').attr("x", d => {
+			const dx = d.target.x + d.source.x;
+			return dx / 2;
+		});
+
+		svg.selectAll('.label').attr("y", d => {
+			const dy = d.target.y + d.source.y;
+			return dy / 2;
+		});
+
+
+		node.attr("transform", (d) => {
+			return "translate(" + d.x + "," + d.y + ")";
+		});
+	}
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(3);
 __webpack_require__(1);
-__webpack_require__(2);
-module.exports = __webpack_require__(3);
+module.exports = __webpack_require__(2);
 
 
 /***/ })
