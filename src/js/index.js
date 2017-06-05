@@ -32,3 +32,8 @@ $('#matrix-content')
 	.keydown(function (event) {
 		common.validateOnlyNumber(event);
 	});
+
+$('#matrix-dimension')
+	.keyup(function (event) {
+		common.validateOnlyNumber(event);
+	});
